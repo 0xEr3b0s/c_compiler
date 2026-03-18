@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <string>
-#include <regex.h>
 
 // Basic lexer
 struct Token {
