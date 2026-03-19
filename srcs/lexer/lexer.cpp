@@ -28,6 +28,8 @@ std::vector<std::string> split_string(const std::string &code) {
 			it++;
 		}
 	}
+	if (!recomposed_word.empty())
+		words_vector.push_back(recomposed_word);
 	return (words_vector);
 }
 
