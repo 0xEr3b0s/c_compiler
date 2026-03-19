@@ -19,6 +19,9 @@ int main(int ac, char *av[]) {
 	oss << readed_file.rdbuf();
 	std::string code = oss.str();
 	readed_file.close();
-	tokenizer(code);
+	std::vector<Token> token_vector = tokenizer(code);
+	for (Token t : token_vector) {
+		std::cout << "value: " << t.value << " :: type: " << t.type << std::endl; 
+	}
 	return (0);
 }
