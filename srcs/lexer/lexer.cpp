@@ -10,7 +10,7 @@ std::vector<std::string> split_string(const std::string &code) {
 	std::vector<std::string> words_vector;
 
 	std::string recomposed_word = "";
-	std::string special_characters = "{}();";
+	std::string special_characters = "#<>{}();";
 
 	for (char c : code) {
 		if (!std::isspace(c) && special_characters.find(c) == std::string::npos)
@@ -33,12 +33,15 @@ std::vector<Token> tokenizer(const std::string &code) {
 	// Patterns
 	std::regex identifier_pattern("^[a-zA-Z_]\\w*$");
 	std::regex constant_pattern("[0-9]+$");
+	std::regex keyword_pattern("int|void|return"); // find out what to put here
 
 	// str into words
 	words_vector = split_string(code);
 
 	for (std::string w : words_vector ) {
-		if (std::regex_match(w, identifier_pattern))
+		if (std::regex_match(w, keyword_pattern))
+			vector_token.push_back(Token({w, "KEYWORD"}));
+		else if (std::regex_match(w, identifier_pattern))
 			vector_token.push_back(Token({w, "IDENTIFIER"}));
 		else if (std::regex_match(w, constant_pattern))
 			vector_token.push_back(Token({w, "CONSTANT"}));
