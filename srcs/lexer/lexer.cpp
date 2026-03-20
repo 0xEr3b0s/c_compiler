@@ -54,7 +54,7 @@ std::vector<Token> tokenizer(const std::string &code) {
 		else if (std::regex_match(w, close_delimiter_pattern))
 			vector_token.push_back(Token({w, "CLOSE_DELIMITER"}));
 		else
-			vector_token.push_back(Token({w, "UNKNOWN"}));
+			throw CustomException::UnmatchedRegexPatternException();
 	}
 	return (vector_token);
 }
