@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 
-#include "lexer/lexer.hpp"
+#include "main.hpp"
 
 int main(int ac, char *av[]) {
 	if (ac < 1) {
