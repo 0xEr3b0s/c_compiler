@@ -1,17 +1,10 @@
 #pragma once
 
-#include <exception>
 #include <string>
 #include <vector>
+#include <exception>
 
-/* SECTION Lexer Part */
-struct Token {
-		std::string value;
-		std::string type;
-};
-
-std::vector<Token> tokenizer(const std::string &code);
-
+#pragma region Exception
 class CustomException {
 	public:
 		class NoneAlphaCharacterException : public std::exception {
@@ -26,5 +19,17 @@ class CustomException {
 				}
 		};
 };
+#pragma endregion
 
-/* !SECTION */
+#pragma region Lexer
+struct Token {
+		std::string value;
+		std::string type;
+};
+
+std::vector<Token> tokenizer(const std::string &code);
+#pragma endregion
+
+#pragma region Parser
+
+#pragma endregion
