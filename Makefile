@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = -std=c++23 -Wall -Wextra -g
+CXXFLAGS = -std=c++17 -Wall -Wextra -g
 
 # Répertoires
 INCLUDE_DIR = includes

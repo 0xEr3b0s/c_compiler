@@ -14,15 +14,15 @@ std::vector<std::string> split_string(const std::string &code) {
 
 	for (char c : code) {
 		if (unrecognized_characters.find(c) != std::string::npos)
-			throw CustomException::UnrecognizedCharacterException();
+			throw UnrecognizedCharacterException();
 		if (!std::isspace(c) && special_characters.find(c) == std::string::npos)
 			recomposed_word += c;
 		if (special_characters.find(c) != std::string::npos || std::isspace(c)) {
 			if (recomposed_word.length() > 1 && std::isdigit(recomposed_word[0]) && std::isalpha(recomposed_word[1]))
-				throw CustomException::NoneAlphaCharacterException();
+				throw NoneAlphaCharacterException();
 			if (!recomposed_word.empty())
 				words_vector.push_back(recomposed_word);
-			if (special_characters.find(c) != std::string::npos) 
+			if (special_characters.find(c) != std::string::npos)
 				words_vector.push_back(std::string(1, c));
 			recomposed_word.clear();
 		}

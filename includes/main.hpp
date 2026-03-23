@@ -1,23 +1,30 @@
 #pragma once
 
+#include <exception>
 #include <string>
 #include <vector>
-#include <exception>
 
 #pragma region Exception
-class CustomException {
-	public:
-		class NoneAlphaCharacterException : public std::exception {
-				const char *what() const noexcept {
-					return "Error: First character is not alpha";
-				}
-		};
+class CustomException : public std::exception {
+	protected:
+		std::string _message;
 
-		class UnrecognizedCharacterException : public std::exception {
-				const char *what() const noexcept {
-					return "Error: Unrecognized character";
-				}
-		};
+	public:
+		CustomException(const std::string &msg) : _message("Error: " + msg) {}
+
+		const char *what() const noexcept override { return _message.c_str(); }
+};
+
+class NoneAlphaCharacterException : public CustomException {
+	public:
+		NoneAlphaCharacterException()
+			: CustomException("First character is not alpha") {}
+};
+
+class UnrecognizedCharacterException : public CustomException {
+	public:
+		UnrecognizedCharacterException()
+			: CustomException("Unrecognized character") {}
 };
 #pragma endregion
 
@@ -31,9 +38,7 @@ std::vector<Token> tokenizer(const std::string &code);
 #pragma endregion
 
 #pragma region Parser
-struct AST {
-	
-};
+struct AST {};
 
 void Parser(void);
 #pragma endregion
