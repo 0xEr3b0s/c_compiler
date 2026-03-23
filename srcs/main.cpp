@@ -1,4 +1,5 @@
 #include <fstream>
+#include <ios>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -25,16 +26,18 @@ int main(int ac, char *av[]) {
 		return (2);
 	}
 
-	std::ostringstream oss;
-	oss << readed_file.rdbuf();
-	std::string code = oss.str();
-	readed_file.close();
-
 	try {
+		std::ostringstream oss;
+		oss << readed_file.rdbuf();
+		std::string code = oss.str();
+		readed_file.close();
+
 		std::vector<Token> token_vector = tokenizer(code);
 		for (Token t : token_vector) {
 			std::cout << t.value << "::" << t.type << std::endl;
 		}
+	} catch (std::ios::failure) {
+		std::cout << "Error: ios error" << std::endl;
 	} catch (UnrecognizedCharacterException &u) {
 		std::cout << u.what() << std::endl;
 	} catch (NoneAlphaCharacterException &n) {
