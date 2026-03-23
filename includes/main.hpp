@@ -31,5 +31,9 @@ std::vector<Token> tokenizer(const std::string &code);
 #pragma endregion
 
 #pragma region Parser
+struct AST {
+	
+};
 
+void Parser(void);
 #pragma endregion
