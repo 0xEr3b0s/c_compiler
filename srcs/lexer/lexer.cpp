@@ -64,7 +64,7 @@ Token *Lexer::tokenizeINT(void) {
 Token *Lexer::tokenizeSPECIAL(enum type TYPE) {
 	Token *newToken = new Token();
 	newToken->TYPE = TYPE;
-	newToken->value = advance_cursor();
+	newToken->value = std::string(1, advance_cursor());
 
 	return (newToken);
 }
