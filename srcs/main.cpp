@@ -16,13 +16,14 @@ int main(int ac, char *av[]) {
 		std::string arg = av[i];
 		if (arg[0] != '-') {
 			file_name = arg;
-			break ;
+			break;
 		}
 	}
 
 	std::ifstream readed_file(file_name);
 	if (!readed_file.is_open()) {
-		std::cerr << "Error: File couldn't be opened or dont exist ( " << file_name << " )" << std::endl;
+		std::cerr << "Error: File couldn't be opened or dont exist ( "
+				  << file_name << " )" << std::endl;
 		return (2);
 	}
 
@@ -32,15 +33,15 @@ int main(int ac, char *av[]) {
 		std::string code = oss.str();
 		readed_file.close();
 
-		std::vector<Token> token_vector = tokenizer(code);
+		std::vector<Token> token_vector = Lexer(code).getWordsVector();
 		for (Token t : token_vector) {
 			std::cout << t.value << "::" << t.type << std::endl;
 		}
 	} catch (std::ios::failure) {
 		std::cout << "Error: ios error" << std::endl;
-	} catch (UnrecognizedCharacterException &u) {
+	} catch (Lexer::UnrecognizedCharacterException &u) {
 		std::cout << u.what() << std::endl;
-	} catch (NoneAlphaCharacterException &n) {
+	} catch (Lexer::NoneAlphaCharacterException &n) {
 		std::cout << n.what() << std::endl;
 	} catch (...) {
 		std::cout << "Error: Unknown error occured" << std::endl;
