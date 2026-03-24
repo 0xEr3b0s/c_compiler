@@ -72,6 +72,11 @@ class Function {
 		Function(std::unique_ptr<Expression> &body) : _body(std::move(body)) {};
 };
 
+class Program {
+	private:
+		std::vector<Function> _body;
+};
+
 class Parser {
 	private:
 	protected:
