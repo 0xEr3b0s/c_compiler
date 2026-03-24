@@ -33,7 +33,7 @@ int main(int ac, char *av[]) {
 		std::string code = oss.str();
 		readed_file.close();
 
-		std::vector<Token> token_vector = Lexer(code).getWordsVector();
+		std::vector<Token> token_vector = Lexer(code).getTokenVector();
 		for (Token t : token_vector) {
 			std::cout << t.value << "::" << t.type << std::endl;
 		}
