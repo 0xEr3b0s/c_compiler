@@ -26,12 +26,11 @@ int main(int ac, char *av[]) {
 		return (2);
 	}
 
-	std::ostringstream oss;
-	oss << readed_file.rdbuf();
-	std::string code = oss.str();
-	readed_file.close();
 	try {
-
+		std::ostringstream oss;
+		oss << readed_file.rdbuf();
+		std::string code = oss.str();
+		readed_file.close();
 
 		std::vector<Token> token_vector = tokenizer(code);
 		for (Token t : token_vector) {
