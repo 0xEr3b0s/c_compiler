@@ -42,12 +42,16 @@ int main(int ac, char *av[]) {
 			delete t;
 	} catch (std::ios::failure) {
 		std::cout << "Error: ios error" << std::endl;
+		return (1);
 	} catch (Lexer::UnrecognizedCharacterException &u) {
 		std::cout << u.what() << std::endl;
+		return (2);
 	} catch (Lexer::NoneAlphaCharacterException &n) {
 		std::cout << n.what() << std::endl;
+		return (3);
 	} catch (...) {
 		std::cout << "Error: Unknown error occured" << std::endl;
+		return (4);
 	}
 	return (0);
 }

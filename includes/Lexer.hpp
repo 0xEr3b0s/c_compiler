@@ -48,7 +48,7 @@ class Lexer {
 		Token *tokenizeID(void);
 		Token *tokenizeINT(void);
 		Token *tokenizeSPECIAL(enum type);
-		void handleSpecials(void);
+		bool handleSpecials(void);
 		std::vector<Token *> tokenize(void);
 
 		// Exception
