@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 
-#include "main.hpp"
+#include "Lexer.hpp"
 
 int main(int ac, char *av[]) {
 	if (ac < 2) {
@@ -30,13 +30,16 @@ int main(int ac, char *av[]) {
 	try {
 		std::ostringstream oss;
 		oss << readed_file.rdbuf();
-		std::string code = oss.str();
+		std::string sourceCode = oss.str();
 		readed_file.close();
 
-		std::vector<Token> token_vector = Lexer(code).getTokenVector();
-		for (Token t : token_vector) {
-			std::cout << t.value << "::" << t.type << std::endl;
+		Lexer lexer(sourceCode);
+		std::vector<Token *> tokens = lexer.tokenize();
+		for (Token *t : tokens) {
+			std::cout << t->TYPE << " :: " << t->value << std::endl;
 		}
+		for (Token *t : tokens)
+			delete t;
 	} catch (std::ios::failure) {
 		std::cout << "Error: ios error" << std::endl;
 	} catch (Lexer::UnrecognizedCharacterException &u) {
