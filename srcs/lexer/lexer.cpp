@@ -122,3 +122,7 @@ std::vector<Token *> Lexer::tokenize() {
 	}
 	return (_tokens);
 }
+
+std::vector<Token *> Lexer::getTokens(void) {
+	return (_tokens);
+}
