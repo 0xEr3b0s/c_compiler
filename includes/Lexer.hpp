@@ -51,6 +51,9 @@ class Lexer {
 		bool handleSpecials(void);
 		std::vector<Token *> tokenize(void);
 
+		// GETTER / SETTER
+		std::vector<Token *> getTokens(void);
+
 		// Exception
 		class NoneAlphaCharacterException : public CustomException {
 			public:
