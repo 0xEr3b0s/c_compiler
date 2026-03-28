@@ -65,15 +65,17 @@ class Program {
 // Parser
 class Parser {
 	private:
-		std::vector<Token *> _token;
+		std::vector<Token *> _tokens;
 		int _current = 0;
 
 		Token *peak(void);
 		Token *advance(void);
+		Token *previous(void);
 		bool match(enum type type);
 
 		bool check(enum type type);
 		void except(enum type type, const std::string &message);
+		bool isAtEnd(void);
 
 	public:
 		Program *parse(std::vector<Token *> &tokens);

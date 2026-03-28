@@ -46,6 +46,7 @@ int main(int ac, char *av[]) {
 
 		for (Token *t : tokens)
 			delete t;
+		delete program;
 	} catch (std::ios::failure) {
 		std::cout << "Error: ios error" << std::endl;
 		return (1);
