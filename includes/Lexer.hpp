@@ -50,6 +50,7 @@ class Lexer {
 		Token *tokenizeSPECIAL(enum type);
 		bool handleSpecials(void);
 		std::vector<Token *> tokenize(void);
+		void freeTokens(void);
 
 		// GETTER / SETTER
 		std::vector<Token *> getTokens(void);

@@ -19,6 +19,4 @@ class CustomException : public std::exception {
 
 #pragma region UtilFunctions
 
-
-
 #pragma endregion
