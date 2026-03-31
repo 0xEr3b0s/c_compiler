@@ -35,18 +35,17 @@ int main(int ac, char *av[]) {
 		readed_file.close();
 
 		Lexer lexer(sourceCode);
-		Parser parser = Parser();
 		std::vector<Token *> tokens = lexer.tokenize();
 		for (Token *t : tokens) {
 			std::cout << t->TYPE << " :: " << t->value << std::endl;
 		}
+		Parser parser = Parser(tokens);
 
 		// Parsing part
-		Program *program = parser.parse(tokens);
+		Program *program = parser.parse();
 
 		for (Token *t : tokens)
 			delete t;
-		delete program;
 	} catch (std::ios::failure) {
 		std::cout << "Error: ios error" << std::endl;
 		return (1);
