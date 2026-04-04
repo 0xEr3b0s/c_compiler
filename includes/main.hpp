@@ -1,6 +1,5 @@
 #pragma once
 
-#include <exception>
 #include <string>
 
 #pragma region Exception
@@ -18,7 +17,5 @@ class CustomException : public std::exception {
 #pragma endregion
 
 #pragma region UtilFunctions
-
-
 
 #pragma endregion
