@@ -1,9 +1,8 @@
 #include "Lexer.hpp"
-#include <algorithm>
+#include "Exceptions.hpp"
 #include <cctype>
 #include <cstddef>
 #include <cstring>
-#include <iostream>
 #include <sstream>
 
 Lexer::Lexer(std::string &sourceCode) {
@@ -322,7 +321,7 @@ std::string Lexer::createWord(void) {
 		if (_current == '\'') {
 			buffer << advance_cursor();
 		} else {
-			throw UnrecognizedCharacterException();
+			throw UnexpectedCharacterException("[ERROR] Unrecognized character: " + buffer.str());
 		}
 
 		return (buffer.str());
@@ -345,13 +344,13 @@ std::string Lexer::createWord(void) {
 		if (_current == '"') {
 			buffer << advance_cursor();
 		} else {
-			throw UnrecognizedCharacterException();
+			throw UnexpectedCharacterException("[ERROR] Unrecognized character: " + buffer.str());
 		}
 
 		return (buffer.str());
 	}
 
-	throw UnrecognizedCharacterException();
+	throw UnexpectedCharacterException("[ERROR] Unrecognized character: " + buffer.str());
 }
 
 std::vector<Token *> &Lexer::tokenize() {
@@ -359,18 +358,18 @@ std::vector<Token *> &Lexer::tokenize() {
 	std::string word = "";
 
 	if (_source.empty())
-		throw EmptyFileException();
+		throw EmptyFileException("[ERROR] Empty file detected");
 
 	while (_cursor < _size && notEof) {
 		checkAndSkip();
 		
-		if (_current == '\0')  // ✅ AJOUTER CETTE VÉRIFICATION
+		if (_current == '\0')
 			break;
 
 		word.clear();
 		word = createWord();
 		
-		if (word.empty())  // ✅ AJOUTER CETTE VÉRIFICATION
+		if (word.empty())
 			break;
 
 		if (tokenizeKeyword(word)) {
@@ -382,7 +381,7 @@ std::vector<Token *> &Lexer::tokenize() {
 		} else if (tokenizePunctuation(word)) {
 			continue;
 		} else {
-			throw UnrecognizedCharacterException();
+			throw UnexpectedCharacterException("[ERROR] Unrecognized character: " + word);
 		}
 	}
 	return (_tokens);
