@@ -41,7 +41,7 @@ int main(int ac, char *av[]) {
 			std::cout << tokenTypeToString(t->TYPE) << " :: " << t->value << std::endl;
 		}
 
-	} catch (std::ios::failure) {
+	} catch (std::ios::failure &) {
 		std::cout << "Error: ios error" << std::endl;
 		return (1);
 	} catch (CustomException &u) {
